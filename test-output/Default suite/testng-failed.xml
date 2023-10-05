@@ -7,6 +7,7 @@
         <methods>
           <include name="loginTest"/>
           <include name="setup"/>
+          <include name="tearDown"/>
         </methods>
       </class> <!-- inetBanking_Automation.TestCases.TC_LoginTest_001 -->
     </classes>
