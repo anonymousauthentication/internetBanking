@@ -4,26 +4,26 @@ import java.io.IOException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import common.BaseTest;
+import common.ReadConfig;
 import pageObject.LoginPageObject;
 
 public class TC_LoginTest_001 extends BaseTest {
 
 	@Test
 	public void loginTest() throws IOException {
-		System.out.println("LoginTest");
-		logger.info("Email Enter");
-		logger.debug("aaaa");
-		logger.error("fsdfsfsf212");
-		getGlobalProperty();
-		driver.get(prop.getProperty("weburl"));
+		ReadConfig rr = new ReadConfig();
+		logger.info("Login Test Executing");
+		driver.get(rr.getWebUrl());
 		LoginPageObject loginPage = new LoginPageObject(driver);
-		loginPage.setUserName(prop.getProperty("username"));
-		loginPage.setPassword(prop.getProperty("password"));
+		loginPage.setUserName(rr.getUserName());
+		loginPage.setPassword(rr.getPassword());
 		loginPage.loginSubmit();
-		if (driver.getTitle().equals("Guru99 Bank Manager HomePage")) {
+		if (driver.getTitle().equals(rr.getHomePageTitle())) {
 			Assert.assertTrue(true);
+			logger.info("Home Page Successfully Open");
 		} else {
 			Assert.assertTrue(false);
+			logger.info("Login Test Fail");
 		}
 	}
 }
