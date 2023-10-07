@@ -1,0 +1,5 @@
+20:45:11.995 [main] INFO  - Browser Setup Phase Started...
+20:45:12.001 [main] INFO  - Chrome Browser Launching .. 
+20:45:16.160 [main] INFO  - Login Test Executing
+20:45:28.996 [main] INFO  - Home Page Successfully Open
+20:45:29.011 [main] INFO  - Browser Closing

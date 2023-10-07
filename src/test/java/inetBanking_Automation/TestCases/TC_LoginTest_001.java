@@ -22,8 +22,8 @@ public class TC_LoginTest_001 extends BaseTest {
 			Assert.assertTrue(true);
 			logger.info("Home Page Successfully Open");
 		} else {
-			Assert.assertTrue(false);
 			logger.info("Login Test Fail");
+			Assert.assertTrue(false);
 		}
 	}
 }

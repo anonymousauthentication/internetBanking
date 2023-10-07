@@ -23,7 +23,6 @@ public class LoginPageObject {
 	WebElement loginButton;
 
 	public void setUserName(String userName) {
-		System.out.println(userName);
 		emailInput.sendKeys(userName);
 	}
 

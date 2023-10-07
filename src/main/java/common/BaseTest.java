@@ -25,8 +25,6 @@ public class BaseTest {
 		String browser = rr.getBrowserName();
 		logger = LogManager.getLogger(BaseTest.class.getName());
 		logger.info("Browser Setup Phase Started...");
-
-		System.out.println("Setup ");
 		if (browser.equals("chrome")) {
 			logger.info("Chrome Browser Launching .. ");
 			driver = new ChromeDriver();
