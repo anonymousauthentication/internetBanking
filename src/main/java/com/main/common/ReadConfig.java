@@ -1,4 +1,4 @@
-package common;
+package com.main.common;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,11 +11,11 @@ public class ReadConfig {
 
 	public ReadConfig() throws IOException {
 		prop = new Properties();
-		files = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\config.properties");
+		files = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\com\\main\\resources\\config.properties");
 		prop.load(files);
 	}
 
-	public String getUserName() {
+	public String getUserName() { 
 		return prop.getProperty("username");
 	}
 
