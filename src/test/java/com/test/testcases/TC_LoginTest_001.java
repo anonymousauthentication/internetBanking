@@ -2,15 +2,18 @@ package com.test.testcases;
 
 import java.io.IOException;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.main.common.BaseTest;
 import com.main.common.ReadConfig;
 import com.main.pageObject.LoginPageObject;
-
+import com.test.testcomponent.Listner;
+@Listeners(Listner.class)
 public class TC_LoginTest_001 extends BaseTest {
 	ReadConfig rr;
 
+	
 	@Test
 	public void loginTest() throws IOException {
 		rr = new ReadConfig();

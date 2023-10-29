@@ -6,19 +6,22 @@ import java.io.IOException;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.ViewName;
 
 public class chapter5 {
 	public static void main(String args[]) throws IOException {
 		ExtentReports extentReports = new ExtentReports();
 		ExtentSparkReporter sparkReporter = new ExtentSparkReporter("report5.html");
 		extentReports.attachReporter(sparkReporter); 
+		sparkReporter.viewConfigurer().viewOrder().as(new ViewName[] {ViewName.TEST,
+				ViewName.DASHBOARD}).apply();
 		
 		extentReports.createTest("Test 1")
 		.assignAuthor("Manohar")
 		.assignCategory("Smoke")
 		.assignDevice("Chrome 101")
 		.pass("Pass Test");
-		
+				
 		extentReports.createTest("Test 2 ")
 		.assignAuthor("John Doe")
 		.assignCategory("Sanity")

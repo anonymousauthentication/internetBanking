@@ -19,8 +19,12 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 public class chapter3 {
 	public static void main(String args[]) throws IOException {
 		ExtentReports extentReports = new ExtentReports();
-		ExtentSparkReporter sparkReporter = new ExtentSparkReporter("report3.html");
-		extentReports.attachReporter(sparkReporter);
+		ExtentSparkReporter sparkReporter_all = new ExtentSparkReporter("allTest.html");
+		ExtentSparkReporter sparkReporter_Fail = new ExtentSparkReporter("fail.html");
+		sparkReporter_Fail.filter().statusFilter().as(new Status[] { Status.FAIL}).apply();
+		ExtentSparkReporter sparkReporter_SkipAndWar = new ExtentSparkReporter("SkipAndWar.html");
+		sparkReporter_SkipAndWar.filter().statusFilter().as(new Status[] { Status.WARNING,Status.SKIP}).apply();
+		extentReports.attachReporter(sparkReporter_all,sparkReporter_Fail, sparkReporter_SkipAndWar );
 
 		extentReports
 		.createTest("Test 1")
@@ -61,6 +65,15 @@ public class chapter3 {
 		mapData.put(103, "Joshi");
 		
 		Set<Integer> setData = mapData.keySet();
+
+		extentReports.createTest("Pass Test")
+		.pass("Pass Test");
+		
+		extentReports.createTest("Fail Test")
+		.fail("fail test");
+		
+		extentReports.createTest("Dkip Test")
+		.skip("Skip Test");
 		
 		extentReports.createTest("List Based Test")
 		.log(Status.INFO,MarkupHelper.createOrderedList(listData))
@@ -91,10 +104,12 @@ public class chapter3 {
 		.log(Status.FAIL, t);
 		
 		extentReports.createTest("Exception Test 3")
-		.fail(t);
+		.fail(t);    
 		
         
 		extentReports.flush();
-		Desktop.getDesktop().browse(new File("report3.html").toURI());
+		Desktop.getDesktop().browse(new File("allTest.html").toURI());
+		Desktop.getDesktop().browse(new File("fail.html").toURI());
+		Desktop.getDesktop().browse(new File("SkipAndWar.html").toURI());
 	}
 }
