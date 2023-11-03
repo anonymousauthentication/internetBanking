@@ -18,8 +18,13 @@ public class BrokenLink {
 	static WebDriver driver;
 
 	public static void main(String args[]) throws IOException {
-		getBrokenLink();
+		// getBrokenLink();
 		// scrollWeb();
+		// classAndAttribute();
+		// BrokenLink bb = new BrokenLink();
+		// System.out.println(bb.getClass());
+		getUrl();
+		// navigateUrl();
 	}
 
 	public static void getBrokenLink() throws IOException {
@@ -32,19 +37,18 @@ public class BrokenLink {
 		for (WebElement getLink : ll) {
 			String url = getLink.getAttribute("href");
 			try {
-			URL link = new URL(url);
-			HttpURLConnection httpURLConnection = (HttpURLConnection) link.openConnection();
-			httpURLConnection.setConnectTimeout(3000); // Set connection timeout to 3 seconds
-			httpURLConnection.connect();
+				URL link = new URL(url);
+				HttpURLConnection httpURLConnection = (HttpURLConnection) link.openConnection();
+				httpURLConnection.setConnectTimeout(3000); // Set connection timeout to 3 seconds
+				httpURLConnection.connect();
 
-			
-			if (httpURLConnection.getResponseCode() == 200) {
-				System.out.println(url + " - " + httpURLConnection.getResponseMessage());
-			} else {
-				System.out.println(url + " - " + httpURLConnection.getResponseMessage() + " - " + "is a broken link");
-			}
-			}
-			catch(Exception e){
+				if (httpURLConnection.getResponseCode() == 200) {
+					System.out.println(url + " - " + httpURLConnection.getResponseMessage());
+				} else {
+					System.out
+							.println(url + " - " + httpURLConnection.getResponseMessage() + " - " + "is a broken link");
+				}
+			} catch (Exception e) {
 				System.out.println(url + " - " + "is a broken link");
 			}
 
@@ -57,5 +61,34 @@ public class BrokenLink {
 		driver.get("https://webkul.com/");
 		JavascriptExecutor sss = (JavascriptExecutor) driver;
 		sss.executeScript("window.scrollBy(0,220)");
+	}
+
+	public static void classAndAttribute() {
+		driver = new ChromeDriver();
+		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+		WebElement ele = driver.findElement(By.cssSelector("input[id=\"autocomplete\"]"));
+		System.out.println(ele.getClass());
+		System.out.println(ele.getAttribute("class"));
+
+	}
+
+	public void aaaa() {
+		System.out.println("asdd");
+	}
+
+	public static void getUrl() {
+		driver = new ChromeDriver();
+		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+		WebElement cc = driver.findElement(By.cssSelector("input[id*=\"auto\"]"));
+		cc.sendKeys("Ind");
+		JavascriptExecutor jj = (JavascriptExecutor) driver;
+		jj.executeScript("arguments[0].setAttribute('style','background: red; border:2px solid blue;')", cc);
+
+	}
+
+	public static void navigateUrl() {
+		driver = new ChromeDriver();
+		driver.navigate().to("https://rahulshettyacademy.com/AutomationPractice/");
+		driver.findElement(By.cssSelector("input[id*=\"auto\"]")).sendKeys("Ind");
 	}
 }
